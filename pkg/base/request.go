@@ -50,7 +50,8 @@ type Options struct {
 	SelectFiles []int `json:"selectFiles,omitempty"`
 	// Extra contains protocol-specific download options
 	Extra interface{} `json:"extra,omitempty"`
-	// Connections is the number of parallel connections per file
+	// Connections is the number of parallel connections per file.
+	// Defaults to 4 if not set; higher values may improve speed on fast connections.
 	Connections int `json:"connections,omitempty"`
 }
 
@@ -60,7 +61,7 @@ type HTTPRequestConfig struct {
 	Header http.Header `json:"header,omitempty"`
 	// UserAgent overrides the default User-Agent header
 	UserAgent string `json:"userAgent,omitempty"`
-	// Proxy is the proxy URL string (e.g. "http://proxy:8080")
+	// Proxy is the proxy URL string (e.g. "http://proxy:8080" or "socks5://proxy:1080")
 	Proxy string `json:"proxy,omitempty"`
 }
 
@@ -83,21 +84,4 @@ const (
 )
 
 // String returns a human-readable representation of the Status
-func (s Status) String() string {
-	switch s {
-	case StatusReady:
-		return "ready"
-	case StatusRunning:
-		return "running"
-	case StatusPause:
-		return "pause"
-	case StatusWait:
-		return "wait"
-	case StatusError:
-		return "error"
-	case StatusDone:
-		return "done"
-	default:
-		return "unknown"
-	}
-}
+func (s Status) String() string
