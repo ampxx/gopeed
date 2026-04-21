@@ -51,7 +51,7 @@ type Options struct {
 	// Extra contains protocol-specific download options
 	Extra interface{} `json:"extra,omitempty"`
 	// Connections is the number of parallel connections per file.
-	// Defaults to 4 if not set; higher values may improve speed on fast connections.
+	// Defaults to 8 if not set; higher values may improve speed on fast connections.
 	Connections int `json:"connections,omitempty"`
 }
 
@@ -80,8 +80,4 @@ const (
 	// StatusError indicates the task encountered an error
 	StatusError
 	// StatusDone indicates the task completed successfully
-	StatusDone
-)
-
-// String returns a human-readable representation of the Status
-func (s Status) String() string
+	S
